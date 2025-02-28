@@ -87,6 +87,7 @@ export default function EditInvoiceForm({
                   value="pending"
                   defaultChecked={invoice.status === 'pending'}
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  aria-describedby="status-error"
                 />
                 <label
                   htmlFor="pending"
@@ -103,6 +104,7 @@ export default function EditInvoiceForm({
                   value="paid"
                   defaultChecked={invoice.status === 'paid'}
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  aria-describedby="status-error"
                 />
                 <label
                   htmlFor="paid"
@@ -112,6 +114,14 @@ export default function EditInvoiceForm({
                 </label>
               </div>
             </div>
+          </div>
+          <div id="status-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.status &&
+                state.errors.status.map((error: string) => (
+                    <p className="mt-2 text-sm text-red-500" key={error}>
+                      {error}
+                    </p>
+                ))}
           </div>
         </fieldset>
       </div>
